@@ -13,7 +13,7 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class MemberEditComponent implements OnInit {
   @ViewChild('editForm', {static: true}) editForm: NgForm | undefined;
-  user: User | undefined;
+  user: User | any;
   @HostListener('window:beforeunload', ['$event]'])
   unloadNotification($event: any){
     if(this.editForm?.dirty){
@@ -38,6 +38,10 @@ export class MemberEditComponent implements OnInit {
       this.alertify.error(error);
     });
     
+  }
+
+  updateMainPhoto (photoUrl: any){
+    this.user.photoUrl = photoUrl;
   }
 
 }

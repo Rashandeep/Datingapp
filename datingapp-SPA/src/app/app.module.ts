@@ -29,12 +29,20 @@ import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PreventUnsavedChanges } from './_gaurds/prevent-unsaved-changes.gaurd';
+import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { FileUploadModule } from 'ng2-file-upload';
+// import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 export function tokenGetter(){
   return localStorage.getItem('token');
 }
 
-
+// export class CustomHammerConfig extends HammerGestureConfig {
+//   overrides = {
+//     pinch: { enable: false },
+//     rotate: { enable: false }
+//   };
+// }
 
 
 
@@ -49,13 +57,16 @@ export function tokenGetter(){
       MessagesComponent,
       MemberCardComponent,
       MemberDetailComponent,
-      MemberEditComponent
+      MemberEditComponent,
+      PhotoEditorComponent
    ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    // NgxGalleryModule,
+    FileUploadModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     RouterModule.forRoot(appRoutes),
@@ -77,7 +88,8 @@ export function tokenGetter(){
     UserService,
     AuthGuard,
     MemberEditResolver,
-    PreventUnsavedChanges
+    PreventUnsavedChanges,
+    // { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
   ],
   bootstrap: [AppComponent]
 })
